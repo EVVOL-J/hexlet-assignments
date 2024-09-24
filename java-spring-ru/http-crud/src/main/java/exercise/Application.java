@@ -21,7 +21,7 @@ public class Application {
     // BEGIN
     @GetMapping("/posts")
     public List<Post> getPosts(@RequestParam(defaultValue = "10") Integer limit, @RequestParam(defaultValue ="1" ) Integer page) {
-        return posts.stream().skip((long) (limit-1) * page).limit(limit).toList();
+        return posts.stream().skip((long) limit * (page-1)).limit(limit).toList();
     }
 
     @GetMapping("/posts/{id}")
