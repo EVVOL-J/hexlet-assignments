@@ -38,7 +38,7 @@ public class Application {
     }
 
     @PutMapping("/posts/{id}")
-    public void updatePost(@PathVariable String id, @RequestBody Post postUpdate) {
+    public Post updatePost(@PathVariable String id, @RequestBody Post postUpdate) {
         posts.stream()
                 .filter(post -> post.getId().equals(id))
                 .findFirst()
@@ -47,6 +47,7 @@ public class Application {
                     p.setBody(postUpdate.getBody());
                     p.setTitle(postUpdate.getTitle());
                 });
+        return postUpdate;
     }
 
     @DeleteMapping("/posts/{id}")
